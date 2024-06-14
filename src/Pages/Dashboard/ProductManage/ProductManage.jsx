@@ -523,7 +523,7 @@ const ProductManage = () => {
             <div>
                 <button onClick={()=>setModal(true)} className="border my-3 border-[#008080] hover:bg-[#008080df] p-2 text-white font-medium rounded-md bg-[#008080]">Add Medicine</button>
             </div>
-            <div>
+            <div className="max-h-[80vh] overflow-y-auto">
                 {/* category table */}
                 <div className="overflow-x-auto">
   <table className="table">

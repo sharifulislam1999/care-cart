@@ -16,7 +16,7 @@ const SellerAds = () => {
     return (
         <div>
             <SectionTitle title="My Ads Request"></SectionTitle>
-            <div>
+            <div className="max-h-[80vh] overflow-y-auto">
             <table className="table w-full border mt-10">
                    <thead>
                     <tr className="text-sm">

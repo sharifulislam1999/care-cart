@@ -18,6 +18,7 @@ const SellerPayment = () => {
     return (
         <div>
             <SectionTitle title="Payment History"></SectionTitle>
+            <div className="max-h-[80vh] overflow-y-auto">
             <table className="table">
                 <thead>
                     <tr>
@@ -38,6 +39,8 @@ const SellerPayment = () => {
                     </tr>)}
                 </tbody>
             </table>
+            </div>
+        
         </div>
     );
 };

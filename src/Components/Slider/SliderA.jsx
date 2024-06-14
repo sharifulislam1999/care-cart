@@ -70,7 +70,7 @@ const handleCart = (id,seller)=>{
   
 }
   return (
-    <div style={style} className={`flex justify-center items-center px-10 py-10 lg:py-0 lg:px-0 relative h-[60vh] lg:h-[60vh] bg-cover bg-center`}>
+    <div style={style} className={`flex justify-center items-center px-10 py-10 lg:py-0 lg:px-0 relative h-[60vh] lg:h-[80vh] bg-cover bg-center`}>
       <div className=""></div>
       <div className="container  mx-auto px-3">
         <div className={`flex lg:flex-row  flex-col gap-10 items-center`}>
