@@ -5,13 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import Banner from "../../Components/Banner/Banner";
 import { FaEye } from "react-icons/fa6";
 import { FaCartPlus } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
 import Swal from 'sweetalert2'
-
-
 const CategoryDetails = () => {
     const useAxiosSecure = useSecure();
     const {user} = useAuth();
@@ -28,6 +26,45 @@ const CategoryDetails = () => {
             return res.data.data;
         }
     })
+    
+    const totalCount = details.length;
+    const itemPerPage = 3;
+    const [currentPage,setCurrentPage] = useState(0);
+    const numberofPages = Math.ceil(totalCount / itemPerPage);
+    const pages = [...Array(numberofPages).keys()];
+    const {data:pagination=[],refetch:paginationRefetch} = useQuery({
+        queryKey:["pagination"],
+        queryFn: async ()=>{
+            const res = await useAxiosSecure.get(`/categorypagination?page=${currentPage}&size=${itemPerPage}&category=${categoryName}`);
+            return res.data;
+        }
+    })
+    useEffect(()=>{
+        paginationRefetch()
+    },[currentPage])
+    console.log(pagination)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const notify = (status,msg) => {
         if(status){
             toast.success(msg,{position: "top-center",})
@@ -60,7 +97,8 @@ console.log(modalData)
        }
        const cartItem = {
         menuId: item._id,
-        email: user?.email,
+        seller:item.seller,
+        user: user?.email,
         image:item.medicineImage,
         price:item.medicinePrice,
         quantity:1
@@ -215,7 +253,7 @@ console.log(modalData)
                 </tr>
             </thead> 
             <tbody>
-                 {details.map((item,i)=> <tr key={i}>
+                 {pagination.map((item,i)=> <tr key={i}>
                     <th className="border">{i+1}</th> 
                     <td className="border">{item.medicineName}</td> 
                     <td className="border">{item.genericName}</td> 
@@ -231,7 +269,14 @@ console.log(modalData)
                         </div></td> 
                  </tr> )}            
                 </tbody>
-            </table>               
+            </table>  
+            <div className="flex justify-center mt-10">
+                <div className="pagination">
+                    {pages.map((item,i)=>(
+                        <button key={i} className={`btn ml-2  ${currentPage === item && 'bg-[#008080] text-white' }`} onClick={()=>setCurrentPage(item)} >{item}</button>
+                    ))}
+                </div>
+            </div>             
             </div>
         </div>
         <ToastContainer></ToastContainer>

@@ -3,18 +3,18 @@ import useAuth from "../Hooks/useAuth";
 import useRole from "../Hooks/useRole";
 import logo from "../assets/images/logo.png";
 import DashboardNav from "./DashboardNav";
+import { useState } from "react";
 
 const Dashboard = () => {
     const {user}= useAuth();
-    const role = useRole();
+    const [role] = useRole();
+    const [navToggle,setNavToggle] = useState(false)
     console.log(role)
     let dashboardLinks = <></>;
     if(role === 'user'){
         dashboardLinks =
         <div>
          <ul className="space-y-2 py-2">
-            <li><NavLink className=' px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/userhome">Home</NavLink></li>
-            <li><NavLink className=' px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/cart">Cart</NavLink></li>
             <li><NavLink className=' px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/userpayments">Payment History</NavLink></li>
         </ul>
     </div>
@@ -44,7 +44,7 @@ const Dashboard = () => {
     return (
         <div>
             <div className="flex">
-                <div className="w-[300px] h-screen">
+                <div className={`w-[300px] h-screen ${navToggle ? 'absolute left-0':'lg:static'}`}>
                     <div className="flex justify-center border-b py-2">
                         <img className="w-1/2" src={logo} alt="" />
                     </div>
@@ -53,7 +53,7 @@ const Dashboard = () => {
                     </div>                   
                 </div>
                 <div className="flex-1 border">
-                    <DashboardNav></DashboardNav>
+                    <DashboardNav navToggle={navToggle} setNavToggle={setNavToggle}></DashboardNav>
                     <div className="p-4">
                     <Outlet></Outlet>    
                     </div>             

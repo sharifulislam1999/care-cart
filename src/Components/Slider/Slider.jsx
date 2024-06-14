@@ -28,7 +28,7 @@ const Slider = () => {
     notify(status,msg)
   }
   return (
-    <div className="">
+    <div className="z-20">
       <Swiper
         navigation={true}
         pagination={{ clickable: true }}

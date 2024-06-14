@@ -7,20 +7,22 @@ import { Link, NavLink } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import "./Nav.css";
+import { FaBars } from "react-icons/fa";
+
 import { useState } from "react";
 import useRole from "../../Hooks/useRole";
 import useCart from "../../Hooks/useCart";
 const Nav = () => {
-    const [cart] = useCart();
+  const [navToggle,setNavToggle] = useState(false);
+  const [cart] = useCart();
   const {user,loading,handleLogOut} = useAuth();
   const [down,setDown] = useState(false);
   const handleOut = ()=>{
     handleLogOut()
     setDown(!down)
   }
-  const role = useRole()
+  const [role] = useRole()
   let dashboardLink = '';
-//   console.log(role.role)
  if(role){
     if(role === "admin"){
         dashboardLink = '/dashboard/adminhome'
@@ -30,11 +32,10 @@ const Nav = () => {
         dashboardLink = '/dashboard/userhome'
       }
  }
-
   return (
-    <div>
+    <div className="z-50">
       <div className="container mx-auto px-3">
-        <div className="flex justify-between flex-col md:flex-row flex-wrap py-1 items-start md:gap-1 gap-1 md:items-center">
+        <div className="hidden lg:flex justify-between flex-col md:flex-row flex-wrap py-1 items-start md:gap-1 gap-1 md:items-center">
             <div className="flex-1 flex gap-1 md:gap-2 items-center flex-wrap">
                 <div className="flex gap-1 items-center">
                     <div>
@@ -79,33 +80,45 @@ const Nav = () => {
                 </div>
             </div>
         </div>
-        <div className="flex justify-between items-center mt-1">
-            <div className="flex-1">
+
+
+
+
+
+        <div className="flex justify-between items-center relative py-2 mt-1">
+        <div className="lg:hidden text-2xl">
+            <FaBars onClick={()=>setNavToggle(!navToggle)}/>
+            </div>
+            <div className="flex-1 hidden lg:block ">
                 <div>
                     <Link to='/'>
                     <img className="w-[150px]" src={logo} alt="" /></Link>
                 </div>
             </div>
-            <div className="">
+            <div className="flex-1 lg:hidden">
+
+            </div>
+            
+            <div className="flex-1 lg:hidden flex justify-center ">
+                    <div>
+                    <Link to='/'>
+                    <img className="w-[120px]" src={logo} alt="" /></Link>
+                </div>
+            </div>
+           
+            <div className={`absolute ${navToggle ? "top-12":"-top-96"} lg:static  z-40 rounded-xl bg-black w-[150px] lg:bg-transparent lg:w-auto`}>
                 <div>
-                    <ul className="flex gap-8 text-[15px] font-medium">
+                    <ul className="flex gap-2 p-5 lg:p-0 lg:gap-8 flex-col lg:flex-row text-[15px] font-medium">
                         <li><NavLink className={({isActive})=> isActive ? "navactive":"navpending"} to="/">Home</NavLink></li>
                         <li><NavLink className={({isActive})=> isActive ? "navactive":"navpending"} to="/shop">Shop</NavLink></li>
-                        <li><NavLink className={({isActive})=> isActive ? "navactive":"navpending"} to="/extra">Extra</NavLink></li>
                     </ul>
                 </div>
             </div>
             <div className="flex justify-end flex-1">
               <div>
-              <div className="flex gap-4 items-center">
-                    <div>
-                        <div className="text-3xl">
-                        <CiSearch />
-                        </div>
-                    </div>
+              <div className="flex gap-4 items-center">                   
                     <div className="relative">
-                        <Link to='/cart'>
-                        
+                        <Link to='/cart'>                        
                         <div className="text-3xl">
                         <CiShoppingCart />
                             </div>
@@ -116,7 +129,7 @@ const Nav = () => {
                     </div>
                     <div>
                        {loading ? <span className="loading loading-spinner text-accent"></span> : user ? <>
-                                <div className="relative">
+                                <div className="relative z-50">
                                     <img onClick={()=>setDown(!down)} className="w-10 h-10 rounded-full border-2 object-fit cursor-pointer border-[#008080]" src={user?.photoURL} alt="" />
                                    {down &&  <div className={`absolute ${down ? 'scale-1 duration-200' : 'scale-0 duration-200'}  top-14 w-48 right-0 p-2 bg-[#008080] rounded-md`}>
                                         <ul className="text-center text-white space-y-2">
@@ -139,10 +152,13 @@ const Nav = () => {
               </div>
             </div>
             <div>
-
-            </div>
-            
+            </div>            
         </div>
+
+
+
+
+        
       </div>
     </div>
   );

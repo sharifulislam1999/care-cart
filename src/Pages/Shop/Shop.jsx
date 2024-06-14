@@ -3,15 +3,15 @@ import Banner from "../../Components/Banner/Banner";
 import usePublic from "../../Hooks/usePublic";
 import Swal from 'sweetalert2'
 import { FaCartPlus, FaEye } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
-import { ToastContainer, toast } from 'react-toastify';
-
+import { ToastContainer, toast } from 
+'react-toastify';
+import "./shop.css"
 import useCart from "../../Hooks/useCart";
 import { useNavigate } from "react-router-dom";
 import useSecure from "../../Hooks/useSecure";
-
 const Shop = () => {
     const navigate = useNavigate();
     const useAxiosSecure = useSecure();
@@ -19,14 +19,30 @@ const Shop = () => {
     const [,refetch] = useCart();
     const axiosPublic = usePublic();
     const [modal,setModal] = useState(false);
-    const [modalData,setModalData] = useState({})
-    const {data:allMedicine=[]} = useQuery({
-        queryKey:["allMedicine"],
+    const [modalData,setModalData] = useState({});
+    const {data:totalData=[]} = useQuery({
+        queryKey:["totalData"],
         queryFn: async ()=>{
-            const res = await axiosPublic.get('/allmedicine');
+            const res = await axiosPublic.get(`/allmedicine`);
             return res.data;
         }
-    })
+    });
+    const {data:allMedicine=[],refetch:pageRefetch} = useQuery({
+        queryKey:["allMedicine"],
+        queryFn: async ()=>{
+            const res = await axiosPublic.get(`/allmedicine?page=${currentPage}&size=${itemPerPage}`);
+            return res.data;
+        }
+    });
+    const medicineCount = totalData.length;
+    console.log(medicineCount)
+    const itemPerPage = 10;
+    const [currentPage,setCurrentPage] = useState(0)
+    const numberofPages = Math.ceil(medicineCount / itemPerPage);
+    const pages = [...Array(numberofPages).keys()]; 
+    useEffect(()=>{
+        pageRefetch()
+    },[currentPage])
     const notify = (status,msg) => {
         if(status){
             toast.success(msg,{position: "top-center",})
@@ -57,7 +73,8 @@ const Shop = () => {
        }
        const cartItem = {
         menuId: item._id,
-        email: user?.email,
+        seller: item.seller,
+        user: user?.email,
         image:item.medicineImage,
         price:item.medicinePrice,
         quantity:1
@@ -71,7 +88,7 @@ const Shop = () => {
         }
         if(res.data.insertedId){
             notify(1,"Added Success")
-          refetch();
+            refetch();
       
         }
        })
@@ -210,7 +227,21 @@ const Shop = () => {
                         </div></td> 
                  </tr> )}            
                 </tbody>
-            </table>          
+            </table>    
+            <div className="mt-10 flex justify-center gap-2">
+                <div className="pagination">
+                    {pages.map((item,i)=>(
+                        <button 
+                        className={`btn btn-sm ml-2 ${currentPage === item && "selected"}`} 
+                        key={i}
+                        onClick={()=> setCurrentPage(item)}
+                        >{item}</button>
+                    ))}
+                </div>
+                            
+            
+            
+            </div>      
 
                 </div>                
             </div>

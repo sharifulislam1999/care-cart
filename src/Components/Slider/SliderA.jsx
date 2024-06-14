@@ -19,7 +19,8 @@ medicineDiscount,
 medicineImage,
 medicinePrice,
 medicineUnit,
-medicineBgImage
+medicineBgImage,
+seller
 } = data;
 const {user} = useAuth();
 const navigate = useNavigate();
@@ -28,7 +29,7 @@ const style = {
 }
 const useAxiosSecure = useSecure();
 const [,refetch] = useCart()
-const handleCart = (id)=>{
+const handleCart = (id,seller)=>{
   if(!user){
     Swal.fire({
       title: "Are you not log in",
@@ -47,7 +48,8 @@ const handleCart = (id)=>{
  }
  const cartItem = {
   menuId: id,
-  email: user?.email,
+  seller:seller,
+  user: user?.email,
   image:medicineImage,
   price:medicinePrice,
   quantity:1
@@ -68,11 +70,11 @@ const handleCart = (id)=>{
   
 }
   return (
-    <div style={style} className={`flex justify-center items-center px-10 lg:px-0 relative h-auto lg:h-[80vh] bg-cover bg-center`}>
+    <div style={style} className={`flex justify-center items-center px-10 py-10 lg:py-0 lg:px-0 relative h-auto lg:h-[80vh] bg-cover bg-center`}>
       <div className=""></div>
-      <div className="container z-20 mx-auto px-3">
-        <div className={`flex lg:flex-row flex-col gap-10 items-center`}>
-          <div className="w-full lg:flex-1 lg:space-y-3 space-y-1">
+      <div className="container  mx-auto px-3">
+        <div className={`flex lg:flex-row  flex-col gap-10 items-center`}>
+          <div className="w-full lg:flex-1 space-y-3 lg:space-y-3 ">
             <h1 className="text-base py-1 font-medium bg-[#008080] inline-block px-3 rounded-full text-white">{genericName}</h1>
             <div className="text-3x lg:text-5xl font-bold leading-normal">
                 <h1 className="text-white leading-snug">{medicineName}</h1>
@@ -82,7 +84,7 @@ const handleCart = (id)=>{
               data-aos="fade-down"
               data-aos-duration="1000"
               data-aos-delay = "500"
-               className="text-[#bdb9b9]">{medicineDes.length > 350 && medicineDes.slice(0,350) + " ..." }</p>
+               className="text-[#bdb9b9]">{medicineDes.length > 150 && medicineDes.slice(0,350) + " ..." }</p>
             </div>
             <div className=" ">
             {medicineDiscount !== '0' ? <div>
@@ -110,7 +112,7 @@ const handleCart = (id)=>{
                 </table>
             </div>
             <div>
-              <button onClick={()=>handleCart(_id)} data-aos="fade-down"
+              <button onClick={()=>handleCart(_id,seller)} data-aos="fade-down"
               data-aos-duration="1000"
               data-aos-delay = "1000"
                className="bg-[#008080] hover:bg-[#008080df] py-2 px-5 rounded-full font-bold text-white">
@@ -119,7 +121,7 @@ const handleCart = (id)=>{
             </div>
           </div>
           <div className="w-full flex justify-center lg:w-1/4">
-            <div className="flex w-96 justify-center relative p-10 bg-white py-9 rounded-badge">
+            <div className="lg:flex w-96 hidden justify-center relative p-10 bg-white py-9 rounded-badge">
                 <img className="h-96 rounded-badge" src={medicineImage} alt="" />
                {medicineDiscount !== '0' &&  <div className="absolute flex justify-center items-center font-semibold text-white -top-5 right-0 h-16 w-16 rounded-full bg-[#008080]">
                     <span>{medicineDiscount}%<p>Off</p></span>

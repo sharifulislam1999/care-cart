@@ -60,25 +60,17 @@ const CheckoutForm = () => {
         console.log("confirm error")
     }else{
         console.log("payment intent",paymentIntent)
-        if(paymentIntent.status === "succeeded"){
-
-            alert('payment success')
-
-            
-            const payment = {
-                email: user.email,
-                price: total,
-                transId:paymentIntent.id,
-                date: new Date(),
-                cartId: cart.map(item => item._id),
-                menuId: cart.map(item => item.menuId),
-                status: 'pending'
-            }
+        if(paymentIntent.status === "succeeded"){        
+            const payment = cart.map((item) => ({
+              ...item,
+              transId: paymentIntent.id,
+              date: new Date(),
+              status:"pending"
+            }))
             const res = await axiosPublic.post('/savepayment',payment)
-            console.log(res.data)
-            if(res.data.clearCart.deletedCount){
-                refetch();
-                navigate('/')
+            if(res.data.cart.deletedCount && res.data.payment.insertedCount){
+              refetch();
+              alert("payment success")
             }
         }
     }

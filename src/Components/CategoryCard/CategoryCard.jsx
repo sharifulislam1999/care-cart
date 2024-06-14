@@ -32,7 +32,7 @@ const CategoryCard = ({ item }) => {
           <h1>{categoryName}</h1>
         </div>
         <div className="text-md text-[#838282cb]">
-          <h1>{categoryDes}</h1>
+          <h1>{categoryDes.length >= 150 ? categoryDes.slice(0,150):categoryDes} ...</h1>
         </div>
         <div className="flex gap-2 items-center">
           <div className="text-[#008080]">

@@ -10,17 +10,14 @@ const PaymentManagement = () => {
             return res.data;
         }
     });
-    console.log(payments)
     const handlePaid = (id)=>{
-        useAxiosSecure.patch(`/payments/${id}`,{status:'paid'})
+        console.log(id)
+        useAxiosSecure.patch(`/payments/666922f0711fa36da6d6522c`)
         .then(res=>{
-            if(res.data.modifiedCount){
-                refetch();
-            }
+            console.log(res.data)
+
         })
-
     }
-
     return (
         <div>
             <SectionTitle title={'All Payments'} />
@@ -39,7 +36,7 @@ const PaymentManagement = () => {
                     <tbody>
                         {payments.map((item,i)=><tr key={i}>
                             <td>{i+1}</td>                            
-                            <td>{item.email}</td>                            
+                            <td>{item.user}</td>                            
                             <td>{item.price}</td>                            
                             <td>{item.transId}</td>                            
                             <td>

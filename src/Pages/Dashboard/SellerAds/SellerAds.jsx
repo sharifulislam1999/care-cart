@@ -22,6 +22,7 @@ const SellerAds = () => {
                     <tr className="text-sm">
                             <th className=" w-7 text-center">Serial</th>                         
                             <th className="border text-center">Medicine Name</th>
+                            <th className="border text-center">Image</th>
                             <th className="border text-center">Status</th>
                         </tr>
                    </thead>
@@ -29,6 +30,7 @@ const SellerAds = () => {
                     {myrequest.map((item,i)=> <tr key={i}>
                         <td className="border">{i+1}</td>
                         <td className="border">{item.medicineName}</td>
+                        <td className="border"><img src={item.medicineImage} className="h-10 w-10 rounded-md" alt="" /></td>                       
                         <td className="border">{item.status}</td>                       
                         {/* <td className="border"><button className="bg-[#008080] text-center w-full py-2 rounded-md cursor-pointer text-white font-bold" onClick={()=>handleView(item)}>View</button></td> */}
                     </tr>)}

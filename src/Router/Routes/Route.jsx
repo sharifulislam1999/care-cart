@@ -22,6 +22,8 @@ import CategoryDetails from "../../Pages/CategoryDetails/CategoryDetails";
 import BannerRequest from "../../Pages/BannerRequest/BannerRequest";
 import Cart from './../../Pages/Cart/Cart';
 import Payment from "../../Pages/Payment/Payment";
+import AdminRoutes from "./AdminRoutes";
+import SellerRoutes from "./SellerRoutes";
 const Routes = createBrowserRouter([
     {
         path: "/",
@@ -46,11 +48,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path:'/cart',
-                element:<Cart></Cart>
-            },
-            {
-                path:'/payment',
-                element:<Payment></Payment>
+                element:<PrivateRoute><Cart></Cart></PrivateRoute>
             }
         ]
     },
@@ -59,40 +57,41 @@ const Routes = createBrowserRouter([
         element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
             {
-                path:"adminhome",
-                element:<AdminHome></AdminHome>
+                path:"adminhome",                
+                element:<AdminRoutes><AdminHome></AdminHome></AdminRoutes>
             },
             {
                 path:"manageuser",
-                element:<ManageUser></ManageUser>
+                element:<AdminRoutes><ManageUser></ManageUser></AdminRoutes>
             },
             {
                 path:"managecategory",
-                element:<ManageCategory/>
+                element:<AdminRoutes><ManageCategory/></AdminRoutes>
             },
             {
                 path:'paymentmanagement',
-                element: <PaymentManagement></PaymentManagement>
+                element: <AdminRoutes><PaymentManagement></PaymentManagement></AdminRoutes>
             },
             {
                 path:'salesreport',
-                element: <SalesReport></SalesReport>
+                element: <AdminRoutes><SalesReport></SalesReport></AdminRoutes>
             },
+            // seller router
             {
                 path:'sellerhome',
-                element:<SellerHome></SellerHome>
+                element:<SellerRoutes><SellerHome></SellerHome></SellerRoutes>
             },
             {
                 path:'productmanage',
-                element:<ProductManage></ProductManage>
+                element: <SellerRoutes> <ProductManage></ProductManage></SellerRoutes>
             },
             {
                 path:'sellerpayment',
-                element:<SellerPayment></SellerPayment>
+                element:<SellerRoutes><SellerPayment></SellerPayment></SellerRoutes>
             },
             {
                 path:'sellerads',
-                element:<SellerAds></SellerAds>
+                element:<SellerRoutes><SellerAds></SellerAds></SellerRoutes>
             },
             {
                 path:'userhome',
@@ -112,7 +111,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path:'bannerrequest',
-                element:<BannerRequest></BannerRequest>
+                element:<AdminRoutes><BannerRequest></BannerRequest></AdminRoutes>
             }
         ]
     }

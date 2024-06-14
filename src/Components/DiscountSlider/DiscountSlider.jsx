@@ -53,7 +53,8 @@ const DiscountSlider = () => {
    }
    const cartItem = {
     menuId: item._id,
-    email: user?.email,
+    seller: item.seller,
+    user: user?.email,
     image:item.medicineImage,
     price:item.medicinePrice,
     quantity:1
@@ -109,8 +110,8 @@ const DiscountSlider = () => {
       >
         {discounted.map((item, i) => (
           <SwiperSlide className="mb-10" key={i}>
-            <div className="p-4 border duration-200 hover:scale-[101%] cursor-pointer rounded-md space-y-2">
-              <div className="h-52 relative">
+            <div className="p-4 border flex flex-col duration-200 hover:scale-[101%] cursor-pointer rounded-md space-y-2">
+              <div className="h-64 lg:h-56 relative">
                 <img
                   className="h-full rounded-md w-full object-cover"
                   src={item.medicineImage}
@@ -162,7 +163,7 @@ const DiscountSlider = () => {
                   {item.medicineUnit}
                 </h1>
               </div>
-              <div>
+              <div className="flex-grow">
                 <span>
                   {item.medicineDes.length > 50
                     ? item.medicineDes.slice(0, 100) + "..."
