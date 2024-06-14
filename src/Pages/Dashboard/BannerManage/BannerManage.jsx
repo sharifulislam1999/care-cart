@@ -367,10 +367,17 @@ const BannerManage = () => {
                                     <select defaultValue={oldData.medicineCompany} {...register('upmedicineCompany',{
                                         required: "Company required"
                                     })} className="border p-2 rounded-md w-full focus:outline-none">
-                                        <option value="">Select One</option>
-                                        <option value="company 1">Company 1</option>
-                                        <option value="company 2">Company 2</option>
-                                        <option value="company 3">Company 3</option>
+                                        <option value="">Select One</option>                                        
+                                        <option value="Pfizer Inc">Pfizer Inc</option>
+                                        <option value="Novartis International AG">Novartis International AG</option>
+                                        <option value="Roche Holding AG">Roche Holding AG</option>
+                                        <option value="Roche Holding AG">Roche Holding AG</option>
+                                        <option value="Merck & Co., Inc">Johnson & Johnson</option>
+                                        <option value="GlaxoSmithKline plc">GlaxoSmithKline plc</option>
+                                        <option value="Sanofi">Sanofi</option>
+                                        <option value="AstraZeneca PLC">AstraZeneca PLC</option>
+                                        <option value="Bayer AG">Bayer AG</option>
+                                        <option value="Eli Lilly and Company">Eli Lilly and Company</option>
                                     </select>
                                     {errors.upmedicineCompany && <span className="text-red-600 text-sm">{errors.upmedicineCompany.message}</span>}
                                 </div>
@@ -501,11 +508,18 @@ const BannerManage = () => {
                                     <h1 className="text-base font-medium">Company:</h1>
                                     <select {...register('medicineCompany',{
                                         required: "Company required"
-                                    })} className="border p-2 rounded-md w-full focus:outline-none">
+                                    })} className="border p-2 rounded-md w-full focus:outline-none">                                         
                                         <option value="">Select One</option>
-                                        <option value="company 1">Company 1</option>
-                                        <option value="company 1">Company 2</option>
-                                        <option value="company 1">Company 3</option>
+                                        <option value="Pfizer Inc">Pfizer Inc</option>
+                                        <option value="Novartis International AG">Novartis International AG</option>
+                                        <option value="Roche Holding AG">Roche Holding AG</option>
+                                        <option value="Roche Holding AG">Roche Holding AG</option>
+                                        <option value="Merck & Co., Inc">Johnson & Johnson</option>
+                                        <option value="GlaxoSmithKline plc">GlaxoSmithKline plc</option>
+                                        <option value="Sanofi">Sanofi</option>
+                                        <option value="AstraZeneca PLC">AstraZeneca PLC</option>
+                                        <option value="Bayer AG">Bayer AG</option>
+                                        <option value="Eli Lilly and Company">Eli Lilly and Company</option>
                                     </select>
                                     {errors.medicineCompany && <span className="text-red-600 text-sm">{errors.medicineCompany.message}</span>}
                                 </div>

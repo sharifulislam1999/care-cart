@@ -10,6 +10,7 @@ import { FaTimes } from "react-icons/fa";
 const Dashboard = () => {
     const {user}= useAuth();
     const [role] = useRole();
+    console.log(role)
     const [navToggle,setNavToggle] = useState(false)
     console.log(role)
     let dashboardLinks = <></>;

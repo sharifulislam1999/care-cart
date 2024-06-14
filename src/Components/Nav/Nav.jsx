@@ -123,7 +123,7 @@ const Nav = () => {
                         <CiShoppingCart />
                             </div>
                         <div className="absolute rounded-full -top-2 -right-1 h-5 w-5 text-center text-white flex items-center justify-center text-sm bg-[#008080]">
-                            <p className="">{cart.length}</p>
+                            <p className="">{user ? cart.length : "0"}</p>
                         </div>
                         </Link>
                     </div>

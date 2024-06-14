@@ -29,7 +29,7 @@ const style = {
 }
 const useAxiosSecure = useSecure();
 const [,refetch] = useCart()
-const handleCart = (id,seller)=>{
+const handleCart = (id,seller,name,company)=>{
   if(!user){
     Swal.fire({
       title: "Are you not log in",
@@ -48,6 +48,8 @@ const handleCart = (id,seller)=>{
  }
  const cartItem = {
   menuId: id,
+  name: name,
+  company:company,
   seller:seller,
   user: user?.email,
   image:medicineImage,
@@ -112,7 +114,7 @@ const handleCart = (id,seller)=>{
                 </table>
             </div>
             <div>
-              <button onClick={()=>handleCart(_id,seller)} data-aos="fade-down"
+              <button onClick={()=>handleCart(_id,seller,medicineName,medicineCompany)} data-aos="fade-down"
               data-aos-duration="1000"
               data-aos-delay = "1000"
                className="bg-[#008080] hover:bg-[#008080df] py-2 px-5 rounded-full font-bold text-white">

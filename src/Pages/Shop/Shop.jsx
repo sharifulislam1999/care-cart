@@ -73,6 +73,8 @@ const Shop = () => {
        }
        const cartItem = {
         menuId: item._id,
+        name: item.medicineName,
+        company:item.medicineCompany,
         seller: item.seller,
         user: user?.email,
         image:item.medicineImage,

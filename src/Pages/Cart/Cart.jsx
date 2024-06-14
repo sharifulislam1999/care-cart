@@ -49,8 +49,8 @@ const Cart = () => {
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td><img className="h-10 w-10" src={item.image} alt="" /></td>
-                  <td>Name</td>
-                  <td>company</td>
+                  <td>{item.name}</td>
+                  <td>{item.company}</td>
                   <td>{item.price} x {item.quantity} = {item.price * item.quantity}</td>
                   <td className="flex gap-2"> <div className="cursor-pointer" onClick={()=>handleQuantity("i",item._id,item.quantity)}>+</div> {item.quantity} <div onClick={()=>handleQuantity("d",item._id,item.quantity)} className="cursor-pointer">-</div></td>
                   <td>

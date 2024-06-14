@@ -42,29 +42,7 @@ const CategoryDetails = () => {
     useEffect(()=>{
         paginationRefetch()
     },[currentPage])
-    console.log(pagination)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
     const notify = (status,msg) => {
         if(status){
             toast.success(msg,{position: "top-center",})
@@ -97,13 +75,14 @@ console.log(modalData)
        }
        const cartItem = {
         menuId: item._id,
+        name:item.medicineName,
+        company:item.medicineCompany,
         seller:item.seller,
         user: user?.email,
         image:item.medicineImage,
         price:item.medicinePrice,
         quantity:1
        }
-       
        useAxiosSecure.post('/cart',cartItem)
        .then(res=>{
         if(res.data.message === "already added"){
@@ -123,16 +102,6 @@ console.log(modalData)
         <div>
 
             {/*  */}
-
-
-
-
-
-
-
-
-
-
 
 
                  {/* modal */}

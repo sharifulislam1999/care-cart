@@ -13,7 +13,7 @@ const UserHome = () => {
     })
     return (
         <div>
-            <h1>this is user home</h1>
+            <h1 className='text-2xl '>Welcome, <span className='text-[#008080] font-semibold'>{user.displayName}</span></h1>
         </div>
     );
 };

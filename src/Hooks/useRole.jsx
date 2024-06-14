@@ -10,6 +10,7 @@ const useRole = () => {
         enabled: !loading,
         queryFn: async ()=>{
             const res = await useAxiosSecure.get(`/getrole/${user.email}`);
+            console.log(res.data)
             return res.data.role;
         }
     })

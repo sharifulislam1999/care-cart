@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import { FiMenu } from "react-icons/fi";
 

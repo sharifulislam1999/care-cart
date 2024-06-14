@@ -12,7 +12,7 @@ const PaymentManagement = () => {
     });
     const handlePaid = (id)=>{
         console.log(id)
-        useAxiosSecure.patch(`/payments/666922f0711fa36da6d6522c`)
+        useAxiosSecure.patch(`/payments/${id}`,{status:'paid'})
         .then(res=>{
             console.log(res.data)
 
