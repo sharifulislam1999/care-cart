@@ -5,6 +5,8 @@ import useCart from "../../Hooks/useCart";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from 'react-toastify';
+
 const CheckoutForm = () => {
   const [error,setError] = useState('');
   const stripe = useStripe();
@@ -25,6 +27,13 @@ const CheckoutForm = () => {
         })       
     }
   },[])
+  const notify = (status,msg) => {
+    if(status){
+        toast.success(msg,{position: "top-center",})
+    }else{
+        toast.error(msg,{position: "top-center",})
+    }
+};
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -70,11 +79,30 @@ const CheckoutForm = () => {
             const res = await axiosPublic.post('/savepayment',payment)
             if(res.data.cart.deletedCount && res.data.payment.insertedCount){
               refetch();
-              alert("payment success")
+              notify(1,'payment success')
+              const makeInvoice = cart.map((item)=>{
+                return {
+                  productName: item.name,
+                  price: item.price,
+                  quantity: item.quantity
+                }
+              })
+              axiosPublic.post('/invoice',{makeInvoice})
+              .then(res=>{
+                if(res.data.insertedId){
+                  console.log(res.data)
+                  setTimeout(()=>{
+                    navigate(`/invoice/${res.data.insertedId}`)
+                  },1000)
+                }
+              })
+              
+
             }
         }
     }
   };
+  console.log(cart)
   return (
     <form onSubmit={handleSubmit}>
       <CardElement
@@ -101,6 +129,7 @@ const CheckoutForm = () => {
       >
         Confirm Payment
       </button>
+      <ToastContainer/>
     </form>
   );
 };

@@ -25,6 +25,7 @@ import Payment from "../../Pages/Payment/Payment";
 import AdminRoutes from "./AdminRoutes";
 import SellerRoutes from "./SellerRoutes";
 import ProfileUpdate from "../../Pages/ProfileUpdate/ProfileUpdate";
+import Invoice from "../../Pages/Invoice/Invoice";
 const Routes = createBrowserRouter([
     {
         path: "/",
@@ -54,6 +55,10 @@ const Routes = createBrowserRouter([
             {
                 path:'/profileupdate',
                 element:<PrivateRoute><ProfileUpdate></ProfileUpdate></PrivateRoute>
+            },
+            {
+                path:'/invoice/:id',
+                element:<PrivateRoute><Invoice></Invoice></PrivateRoute>
             }
         ]
     },
