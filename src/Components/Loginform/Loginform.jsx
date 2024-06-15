@@ -13,6 +13,7 @@ import usePublic from "../../Hooks/usePublic";
 import auth from "../../Firebase/firebase.config";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const Loginform = () => {
     const [loginToggle,setLoginToggle] = useState(true);
@@ -22,6 +23,7 @@ const Loginform = () => {
     const [loginError,setLoginError] = useState({});
     const imageHostKey = import.meta.env.VITE_UPLOAD_KEY;
     const image_upload_api = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    const navigate = useNavigate();
     const notify = (status,msg) => {
         if(status){
             toast.success(msg,{position: "top-center",})
@@ -58,6 +60,7 @@ const Loginform = () => {
                     }
                     axiosPublic.post('/users',user)
                     .then(res=>{
+                        navigate('/')
                         console.log(res.data);
                         if(res.data.insertedId){
                             reset();
@@ -85,6 +88,7 @@ const Loginform = () => {
                 }
                 axiosPublic.post('/users',user)
                     .then(res=>{
+                        navigate('/')
                         console.log(res.data);
                         if(res.data.insertedId){
                             setSubmitLogin(false)
@@ -105,6 +109,7 @@ const Loginform = () => {
                 }
                 axiosPublic.post('/users',user)
                     .then(res=>{
+                        navigate('/')
                         console.log(res.data);
                         if(res.data.insertedId){
                             setSubmitLogin(false)
@@ -135,6 +140,7 @@ const Loginform = () => {
         }
         signIn(email,password)
         .then(res=>{
+            navigate('/')
             console.log(res.user)
             notify(1,"Sign in success")
             e.target.reset();
