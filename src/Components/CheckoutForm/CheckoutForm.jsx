@@ -16,7 +16,7 @@ const CheckoutForm = () => {
   const axiosPublic = usePublic();
   const [clientSec,setClientSec] = useState('')
   const [cart, refetch] = useCart();
-  const total = cart.reduce((a, i) => parseInt(i.price) + a, 4);
+  const total = cart.reduce((a, i) => parseInt(i.price * i.quantity) + a, 0);
 // const total = 45;
   useEffect(()=>{
     if(total > 0){

@@ -6,19 +6,54 @@ const PaymentManagement = () => {
     const {data:payments = [],refetch}= useQuery({
         queryKey: ["payments"],
         queryFn: async ()=>{
-            const res = await useAxiosSecure.get('/payments')
-            return res.data;
+            const res = await useAxiosSecure.get('/adminpayments')
+            const transId =  res.data.map(item => item.transId)
+            const transIdUnique = new Set(transId)
+            const transArray = Array.from(transIdUnique)
+            const main = [];
+            for(let i = 0; i < transArray.length; i++){
+                for(let j = 0; j < res.data.length; j++){
+                    let price = 0;
+                    if(transArray[i] === res.data[j].transId){
+                        price += parseInt(res.data[j].price);
+                        main.push({
+                            id:transArray[i],
+                            price: price,
+                            status: res.data[j].status                 
+                        })
+                    }
+                }
+            }            
+            const mergeAndSum = (items) => {
+                const mergedItems = items.reduce((acc, item) => {
+                  if (!acc[item.id]) {
+                    acc[item.id] = { id: item.id, price: 0, status: 'paid' };
+                  }
+                  acc[item.id].price += item.price;
+                  if (item.status === 'pending') {
+                    acc[item.id].status = 'pending';
+                  }
+                  return acc;
+                }, {});
+              
+                return Object.values(mergedItems);
+              };
+              const result = mergeAndSum(main);
+              console.log(result)
+              return result;
         }
     });
+
+
+
     const handlePaid = (id)=>{
         // console.log(id)
         useAxiosSecure.patch(`/payments/${id}`,{status:'paid'})
         .then(res=>{
-            if(res.data.modifiedCount === 1){
+            if(res.data.modifiedCount > 0){
                 refetch();
             }         
-            
-         })
+         });
     }
     return (
         <div>
@@ -27,10 +62,9 @@ const PaymentManagement = () => {
                 <table className='table'>
                     <thead>
                         <tr>
-                            <th>Serial</th>
-                            <th>Email</th>
-                            <th>Tk</th>
+                            <th>Serial</th>                           
                             <th>TransectionID</th>
+                            <th>TK</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -38,13 +72,16 @@ const PaymentManagement = () => {
                     <tbody>
                         {payments.map((item,i)=><tr key={i}>
                             <td>{i+1}</td>                            
-                            <td>{item.user}</td>                            
+                            <td>{item.id}</td>                            
                             <td>{item.price}</td>                            
-                            <td>{item.transId}</td>                            
-                            <td>
-                            {item.status === "pending"  ? <span className='text-red-600'>{item.status}</span>:<span className='text-green-600'>{item.status}</span>}
-                                </td>                            
-                            <td><button className='btn btn-sm bg-[#008080] text-white' onClick={()=>handlePaid(item._id)}>Accept Payment</button></td>                            
+                            <td>{
+                                
+                                item.status === "paid" ? <span className='text-green-600 font-bold'>{item.status}</span>:<span className='text-red-600 font-bold'>{item.status}</span>
+                                
+                                
+                                
+                                }</td>                            
+                            <td>{item.status === "pending" ? <button className='btn btn-sm bg-[#008080] text-white' onClick={()=>handlePaid(item.id)} >Accept Payment</button> : <button className='btn btn-sm bg-[#008080] text-white' disabled>Accept Payment</button>}</td>                            
                             </tr> )}
                         
                     </tbody>
