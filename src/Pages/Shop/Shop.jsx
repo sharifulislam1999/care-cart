@@ -6,6 +6,7 @@ import { FaCartPlus, FaEye } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from 'react-helmet';
 import { ToastContainer, toast } from 
 'react-toastify';
 import "./shop.css"
@@ -99,6 +100,9 @@ const Shop = () => {
       }
     return (
         <div>
+             <Helmet>
+                <title>Shop || CareCart</title>
+            </Helmet>
             {/* modal */}
             <div className={`fixed z-20 ${modal ? 'scale-1 bottom-0 opacity-1' : 'scale-0 opacity-0 bottom-[500px]'} flex justify-center items-center duration-500  left-0 w-full h-full bg-black bg-opacity-50`}>
                 <div className="lg:w-[80%] md:w-[90%] w-[90%] relative rounded-lg bg-white h-[95vh] overflow-y-auto lg:h-auto">

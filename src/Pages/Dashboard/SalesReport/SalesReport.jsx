@@ -44,7 +44,9 @@ const SalesReport = () => {
                    <button className='btn bg-[#008080] text-white btn-sm'> Export excel </button>
 
                 </DownloadTableExcel>
-                <table className='table' ref={tableRef}>
+                <div className='overflow-x-auto overflow-y-auto h-[80vh]'>
+
+                <table className='table' ref={tableRef} >
                     <thead>
                         <tr>
                             <th>Serial</th>
@@ -64,6 +66,7 @@ const SalesReport = () => {
                         
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     );

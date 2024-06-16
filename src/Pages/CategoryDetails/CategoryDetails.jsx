@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
+import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2'
 const CategoryDetails = () => {
     const useAxiosSecure = useSecure();
@@ -100,6 +101,9 @@ console.log(modalData)
       }
     return (
         <div>
+             <Helmet>
+                <title>Category || ${categoryName}</title>
+            </Helmet>
 
             {/*  */}
 
@@ -167,7 +171,7 @@ console.log(modalData)
                     </tbody>
                 </table>
                         <div className="mt-4">
-                        <button onClick={()=>handleCart(modalData)} className='  bg-[#008080] hover:bg-[#008080df] py-1 px-3 rounded-md text-white font-medium'>Add to Cart</button>
+                        {/* <button onClick={()=>handleCart(modalData)} className='  bg-[#008080] hover:bg-[#008080df] py-1 px-3 rounded-md text-white font-medium'>Add to Cart</button> */}
 
                         </div>
 

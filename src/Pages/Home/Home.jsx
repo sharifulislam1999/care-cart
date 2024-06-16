@@ -4,9 +4,13 @@ import Contact from '../../Components/Contact/Contact/Contact';
 import DiscountSlider from '../../Components/DiscountSlider/DiscountSlider';
 import JoinNow from '../../Components/JoinNow/JoinNow';
 import Slider from '../../Components/Slider/Slider';
+import { Helmet } from 'react-helmet';
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Home || CareCart</title>
+            </Helmet>
             <Slider></Slider>
             <div className='container mx-auto px-3'>
                 <div>

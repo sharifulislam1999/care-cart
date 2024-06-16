@@ -11,17 +11,19 @@ const PaymentManagement = () => {
         }
     });
     const handlePaid = (id)=>{
-        console.log(id)
+        // console.log(id)
         useAxiosSecure.patch(`/payments/${id}`,{status:'paid'})
         .then(res=>{
-            console.log(res.data)
-
-        })
+            if(res.data.modifiedCount === 1){
+                refetch();
+            }         
+            
+         })
     }
     return (
         <div>
             <SectionTitle title={'All Payments'} />
-            <div className='overflow-x-auto'>
+            <div className='overflow-x-auto overflow-y-auto h-[80vh]'>
                 <table className='table'>
                     <thead>
                         <tr>

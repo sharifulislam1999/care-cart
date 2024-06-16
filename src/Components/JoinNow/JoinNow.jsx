@@ -24,7 +24,7 @@ const JoinNow = () => {
                         <p>As an instructor with us, you`ll have the opportunity to inspire, guide, and mentor our diverse community of students. Whether you`re an industry expert, an academic guru, or an experienced professional</p>
                     </div>
                     <div>
-                        <Link to="/register" className="py-2 mt-3 inline-block hover:bg-transparent border-2 border-[#008080]  px-4 hover:text-black duration-200 font-semibold rounded-md text-white bg-[#008080]">Join Now</Link>
+                        <Link to="/login" className="py-2 mt-3 inline-block hover:bg-transparent border-2 border-[#008080]  px-4 hover:text-black duration-200 font-semibold rounded-md text-white bg-[#008080]">Join Now</Link>
                     </div>
                 </div>
             </div>
