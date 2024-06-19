@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from 'react-helmet';
 
 const SalesReport = () => {
     const tableRef = useRef(null);
@@ -29,6 +30,9 @@ const SalesReport = () => {
     },[startDate,endDate,refetch])
     return (
         <div>
+             <Helmet>
+                <title>Sales Report</title>
+            </Helmet>
             <SectionTitle title={"Sales Report"}></SectionTitle>
             <div className='my-5 flex gap-2 items-center'>
             <DatePicker className='border focus:outline-none p-1 rounded-md' placeholderText='Start Date'  dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date) => setStartDate(date)} />

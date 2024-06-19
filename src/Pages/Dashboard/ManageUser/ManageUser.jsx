@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useSecure from "../../../Hooks/useSecure";
 import Swal from 'sweetalert2'
 import SectionTitle from './../../../Components/SectionTitle/SectionTitle';
+import { Helmet } from "react-helmet";
 const ManageUser = () => {
     const useAxiosSecure = useSecure();
     const {data:users=[],refetch} = useQuery({
@@ -66,6 +67,9 @@ const ManageUser = () => {
 
     return (
         <div>
+          <Helmet>
+                <title>Manage Users</title>
+            </Helmet>
           <SectionTitle title="Users"></SectionTitle>
             <div>
             <div className="overflow-x-auto">

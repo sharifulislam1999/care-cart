@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useSecure from "../../../Hooks/useSecure";
 import SectionTitle from './../../../Components/SectionTitle/SectionTitle';
+import { Helmet } from "react-helmet";
 
 const SellerPayment = () => {
-    const {user,loading} = useAuth();
+    const {user} = useAuth();
     // console.log(!loading)
     const useAxiosSecure = useSecure();
     const {data: sellerpayment = []} = useQuery({
@@ -50,6 +51,9 @@ const SellerPayment = () => {
     console.log(sellerpayment);
     return (
         <div>
+             <Helmet>
+                <title>Payment History</title>
+            </Helmet>
             <SectionTitle title="Payment History"></SectionTitle>
             <div className="max-h-[80vh] overflow-y-auto">
             <table className='table'>

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAuth from "../../../Hooks/useAuth";
 import useSecure from "../../../Hooks/useSecure";
+import { Helmet } from "react-helmet";
 // http://localhost:5000/sellerbanner/bangla@mail.com
 const SellerAds = () => {
     const {user} = useAuth();
@@ -15,6 +16,9 @@ const SellerAds = () => {
     });
     return (
         <div>
+             <Helmet>
+                <title>Ads Request</title>
+            </Helmet>
             <SectionTitle title="My Ads Request"></SectionTitle>
             <div className="max-h-[80vh] overflow-y-auto">
             <table className="table w-full border mt-10">

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import usePublic from "../../Hooks/usePublic";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet";
 
 const BannerRequest = () => {
     const [modal,setModal] = useState(false);
@@ -70,6 +71,9 @@ const BannerRequest = () => {
     }
     return (
         <div>
+             <Helmet>
+                <title>Banner Request</title>
+            </Helmet>
 
 {/* modal */}
    {/* modal */}

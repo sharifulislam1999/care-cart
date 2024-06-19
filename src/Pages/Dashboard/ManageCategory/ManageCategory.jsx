@@ -7,6 +7,7 @@ import useSecure from './../../../Hooks/useSecure';
 import { ToastContainer, toast } from 'react-toastify';
 import { useQuery } from "@tanstack/react-query";
 import  Swal  from 'sweetalert2';
+import { Helmet } from "react-helmet";
 const imageHostKey = import.meta.env.VITE_UPLOAD_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 const ManageCategory = () => {
@@ -159,6 +160,9 @@ const ManageCategory = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Manage Category</title>
+            </Helmet>
             {/* modal */}
             <div className={`fixed z-20 ${modal ? 'scale-1 bottom-0 opacity-1' : 'scale-0 opacity-0 bottom-[500px]'} flex justify-center items-center duration-500  left-0 w-full h-full bg-black bg-opacity-50`}>
                 <div className="lg:w-[40%] w-[80%] relative rounded-lg bg-white h-auto">

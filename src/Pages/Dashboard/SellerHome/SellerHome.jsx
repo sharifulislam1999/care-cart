@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import SectionTitle from './../../../Components/SectionTitle/SectionTitle';
 import useAuth from './../../../Hooks/useAuth';
 import useSecure from './../../../Hooks/useSecure';
+import { Helmet } from 'react-helmet';
 const SellerHome = () => {
     const {user} = useAuth();
     const useAxiosSecure = useSecure();
@@ -15,6 +16,9 @@ const SellerHome = () => {
     console.log(sellerStack)
     return (
         <div>
+             <Helmet>
+                <title>Seller Home</title>
+            </Helmet>
             <SectionTitle title={`Welcome, ${user?.displayName}`}></SectionTitle>
             <div className='flex gap-4 mt-10'>
                 <div className='flex-1 text-center py-5 border space-y-3 rounded-lg'>

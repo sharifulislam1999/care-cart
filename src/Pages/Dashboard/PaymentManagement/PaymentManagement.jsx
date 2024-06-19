@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import SectionTitle from './../../../Components/SectionTitle/SectionTitle';
 import useSecure from '../../../Hooks/useSecure';
+import { Helmet } from 'react-helmet';
 const PaymentManagement = () => {
     const useAxiosSecure = useSecure();
     const {data:payments = [],refetch}= useQuery({
@@ -57,6 +58,9 @@ const PaymentManagement = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Payment Management</title>
+            </Helmet>
             <SectionTitle title={'All Payments'} />
             <div className='overflow-x-auto overflow-y-auto h-[80vh]'>
                 <table className='table'>

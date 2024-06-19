@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useSecure from "../../../Hooks/useSecure";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet";
 
 const UserPayments = () => {
     const {user} = useAuth();
@@ -48,6 +49,10 @@ const UserPayments = () => {
     })
     console.log(userPayment)
     return (
+        <>
+         <Helmet>
+                <title>User Payments History</title>
+            </Helmet>
         <div className=" overflow-auto max-h-[80vh]">
         <SectionTitle title="Payment History"></SectionTitle>
         <table className='table'>
@@ -78,6 +83,7 @@ const UserPayments = () => {
                     </tbody>
                 </table>
     </div>
+        </>
     );
 };
 

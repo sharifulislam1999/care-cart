@@ -113,7 +113,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path:'bannermanage',
-                element:<BannerManage></BannerManage>
+                element:<AdminRoutes><BannerManage></BannerManage></AdminRoutes>
             },
             {
                 path:'userpayments',
