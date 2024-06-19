@@ -19,6 +19,8 @@ const CategoryDetails = () => {
     const categoryName = useParams().categoryname
     const navigate = useNavigate();
     const [,refetch] = useCart();
+    const [sort,setSort] = useState('')
+    const [search,setSearch] = useState('')
     // categoryname
     const {data:details=[]} = useQuery({
         queryKey:["details"],
@@ -36,14 +38,13 @@ const CategoryDetails = () => {
     const {data:pagination=[],refetch:paginationRefetch} = useQuery({
         queryKey:["pagination"],
         queryFn: async ()=>{
-            const res = await useAxiosSecure.get(`/categorypagination?page=${currentPage}&size=${itemPerPage}&category=${categoryName}`);
+            const res = await useAxiosSecure.get(`/categorypagination?page=${currentPage}&size=${itemPerPage}&category=${categoryName}&sort=${sort}&search=${search}`);
             return res.data;
         }
     })
     useEffect(()=>{
         paginationRefetch()
-    },[currentPage])
-   
+    },[currentPage,paginationRefetch,sort,search]);
     const notify = (status,msg) => {
         if(status){
             toast.success(msg,{position: "top-center",})
@@ -102,7 +103,7 @@ console.log(modalData)
     return (
         <div>
              <Helmet>
-                <title>Category || ${categoryName}</title>
+                <title>Category || {categoryName}</title>
             </Helmet>
 
             {/*  */}
@@ -124,8 +125,8 @@ console.log(modalData)
                     <div className="mt-10 lg:p-10 p-5">
                         <div className="flex flex-col lg:flex-row gap-7 items-center">
                             <div className="w-full lg:flex-1 p-2">
-                                <div className="h-[450px] relative">
-                                    <img className="h-full w-full object-cover rounded-lg" src={modalData.medicineImage} alt="" />
+                                <div className="h-[450px] flex justify-center relative">
+                                    <img className="h-full object-cover rounded-lg" src={modalData.medicineImage} alt="" />
                                     {modalData.medicineDiscount !== "0" && <div className="absolute rounded-full top-4 left-4 bg-red-800">
                                         <h1 className="px-3 text-white font-semibold">{modalData.medicineDiscount} % Off</h1>
                                     </div>}
@@ -212,7 +213,22 @@ console.log(modalData)
                 <Banner title={categoryName}></Banner>
             </div>
             <div className="container mx-auto px-3 overflow-x-auto">
-            <div className="mt-10">
+                <div className="mt-10">
+                <div className="flex items-center justify-between mb-6">
+                        <div>
+                            <input type="text" onChange={(e)=>setSearch(e.target.value)
+                            } className="border focus:outline-none p-2 rounded" placeholder="Search" />
+                        </div>
+                        <div>
+                            <select onChange={(e)=>setSort(e.target.value)} className="border p-2 rounded focus:outline-none font-semibold">
+                                <option value="">Sort By</option>
+                                <option value="high">Low To High</option>
+                                <option value="low">High To Low</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <div className="">
             <table className="table table-xs w-full border">
             <thead>
                 <tr>

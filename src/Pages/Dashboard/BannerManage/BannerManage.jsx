@@ -426,7 +426,7 @@ const BannerManage = () => {
 }
                                 </div>
                                 <div className="space-y-1">
-                                   <input type="submit" value="Update Medicine" className="w-full bg-[#008080] font-medium text-white hover:bg-[#008080df] py-2 rounded-md cursor-pointer" />
+                                   <input type="submit" value="Update Banner" className="w-full bg-[#008080] font-medium text-white hover:bg-[#008080df] py-2 rounded-md cursor-pointer" />
                                 </div>
                             </div>                             
                         </form> :  <form onSubmit={handleSubmit(handleAddMedicine)}>
@@ -571,7 +571,7 @@ const BannerManage = () => {
 }
                                 </div>
                                 <div className="space-y-1">
-                                   <input type="submit" value="Add Medicine" className="w-full bg-[#008080] font-medium text-white hover:bg-[#008080df] py-2 rounded-md cursor-pointer" />
+                                   <input type="submit" value="Add Banner" className="w-full bg-[#008080] font-medium text-white hover:bg-[#008080df] py-2 rounded-md cursor-pointer" />
                                 </div>
                             </div>                             
                         </form>}

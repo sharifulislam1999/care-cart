@@ -1,7 +1,7 @@
-.navactive{
-    color: #008080;
+.activedash{
+    color: #F3C007;
 }
-.navpending{
-    color: #787676;
+.pendingdash{
+    color: white;
     font-weight: 400;
 }

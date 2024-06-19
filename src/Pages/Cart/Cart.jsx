@@ -2,7 +2,9 @@ import Banner from "../../Components/Banner/Banner";
 import useCart from "../../Hooks/useCart";
 import Payment from "../Payment/Payment";
 import useSecure from "../../Hooks/useSecure";
+import useAuth from "../../Hooks/useAuth";
 const Cart = () => {
+  const {user} = useAuth();
   const [cart, refetch] = useCart();
   const total = cart.reduce((a, i) => parseInt(i.price * i.quantity) + a, 0);
   const useAxiosSecure = useSecure();
@@ -27,11 +29,23 @@ const Cart = () => {
       }
     })
   }
+  const handleClearCart = ()=>{
+    useAxiosSecure.delete(`/clearcart/${user.email}`)
+    .then(res=>{
+      if(res.data.deletedCount > 0){
+        refetch()
+      }
+    })
+
+  }
   return (
     <div>
       <Banner title={`My Cart (${cart.length})`}></Banner>
       <div className="container mx-auto px-3 mt-10">
         <div>
+          <div className="flex justify-end">
+            <button className="btn bg-red-600 text-white font-semibold btn-sm hover:text-black" onClick={handleClearCart}>Clear Cart</button>
+          </div>
           <table className="table">
             <thead>
               <tr>

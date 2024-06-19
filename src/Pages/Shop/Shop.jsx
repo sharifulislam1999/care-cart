@@ -21,6 +21,8 @@ const Shop = () => {
     const axiosPublic = usePublic();
     const [modal,setModal] = useState(false);
     const [modalData,setModalData] = useState({});
+    const [sort,setSort] = useState('')
+    const [search,setSearch] = useState('')
     const {data:totalData=[]} = useQuery({
         queryKey:["totalData"],
         queryFn: async ()=>{
@@ -31,7 +33,7 @@ const Shop = () => {
     const {data:allMedicine=[],refetch:pageRefetch} = useQuery({
         queryKey:["allMedicine"],
         queryFn: async ()=>{
-            const res = await axiosPublic.get(`/allmedicine?page=${currentPage}&size=${itemPerPage}`);
+            const res = await axiosPublic.get(`/allmedicine?page=${currentPage}&size=${itemPerPage}&sort=${sort}&search=${search}`);
             return res.data;
         }
     });
@@ -43,7 +45,7 @@ const Shop = () => {
     const pages = [...Array(numberofPages).keys()]; 
     useEffect(()=>{
         pageRefetch()
-    },[currentPage])
+    },[currentPage,sort,search,pageRefetch])
     const notify = (status,msg) => {
         if(status){
             toast.success(msg,{position: "top-center",})
@@ -125,8 +127,6 @@ const Shop = () => {
                                         <h1 className="px-3 text-white font-semibold">{modalData.medicineDiscount} % Off</h1>
                                     </div>}
                                 </div>
-
-
                             </div>
                             <div className="w-full lg:flex-1 p-2 space-y-3">
                                 <div>
@@ -148,6 +148,7 @@ const Shop = () => {
                                     </div>    
                                 }
                                 </div>
+                                
                                 <div>
                                 <table className="border w-full border-[#0E1A29]">
                     <thead>
@@ -203,7 +204,20 @@ const Shop = () => {
 
             <Banner title={"All Medicine"}></Banner>
             <div className="container mx-auto px-3 mt-10">
-                <div>
+                <div className="">
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <input type="text" onChange={(e)=>setSearch(e.target.value)
+                            } className="border focus:outline-none p-2 rounded" placeholder="Search" />
+                        </div>
+                        <div>
+                            <select onChange={(e)=>setSort(e.target.value)} className="border p-2 rounded focus:outline-none font-semibold">
+                                <option value="">Sort By</option>
+                                <option value="high">Low To High</option>
+                                <option value="low">High To Low</option>
+                            </select>
+                        </div>
+                    </div>
                 <table className="table table-xs w-full border">
             <thead>
                 <tr>

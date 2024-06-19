@@ -5,6 +5,7 @@ import logo from "../assets/images/logo.png";
 import DashboardNav from "./DashboardNav";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import "./Dashboard.css"
 
 
 const Dashboard = () => {
@@ -18,29 +19,29 @@ const Dashboard = () => {
         dashboardLinks =
         <div>
          <ul className="space-y-2 py-2">
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className=' px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/userpayments">Payment History</NavLink></li>
+            <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/userpayments">Payment History</NavLink></li>
         </ul>
     </div>
     }else if(role === 'seller'){
         dashboardLinks = 
         <div>
             <ul className="space-y-2 py-2">
-                <li><NavLink onClick={()=>setNavToggle(!navToggle)} className=' px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/sellerhome">Home</NavLink></li>
-                <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/productmanage">Manage Medicine</NavLink></li>
-                <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/sellerpayment">Payment History</NavLink></li>
-                <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/sellerads">Advertisement Request.</NavLink></li>
+                <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"}  to="/dashboard/sellerhome">Home</NavLink></li>
+                <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/productmanage">Manage Medicine</NavLink></li>
+                <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/sellerpayment">Payment History</NavLink></li>
+                <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/sellerads">Advertisement Request.</NavLink></li>
             </ul>
         </div>
     }else if(role === "admin"){
         dashboardLinks =   <div>
         <ul className="space-y-2 py-2">
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/adminhome">Home</NavLink></li>
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/manageuser">Manage Users</NavLink></li>
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/managecategory">Manage Category</NavLink></li>
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/paymentmanagement">Payment Management</NavLink></li>
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/bannermanage">Banner Management</NavLink></li>
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/bannerrequest">Banner Request</NavLink></li>
-            <li><NavLink onClick={()=>setNavToggle(!navToggle)} className='px-3 py-1 block text-md font-normal text-white  ' to="/dashboard/salesreport">Sales Report</NavLink></li>
+            <li  className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/adminhome">Home</NavLink></li>
+            <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/manageuser">Manage Users</NavLink></li>
+            <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/managecategory">Manage Category</NavLink></li>
+            <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/paymentmanagement">Payment Management</NavLink></li>
+            <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/bannermanage">Banner Management</NavLink></li>
+            <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/bannerrequest">Banner Request</NavLink></li>
+            <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/salesreport">Sales Report</NavLink></li>
         </ul>
     </div>
     }

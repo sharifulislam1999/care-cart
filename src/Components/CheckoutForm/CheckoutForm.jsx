@@ -125,7 +125,7 @@ const CheckoutForm = () => {
       <button
         className="bg-[#008080] rounded-md mt-2 hover:bg-[#008080df] py-2 px-5 font-bold text-white"
         type="submit"
-        disabled={!stripe || !clientSec || !total}
+        disabled={!stripe || !clientSec}
       >
         Confirm Payment
       </button>

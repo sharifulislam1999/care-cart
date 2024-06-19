@@ -15,7 +15,8 @@ const SalesReport = () => {
     const {data:sales = [],refetch}= useQuery({
         queryKey: ["sales"],
         queryFn: async ()=>{
-            const res = await useAxiosSecure.get(`/salesreport?start=${startDate}&endDate=${endDate}`)
+            // const res = await useAxiosSecure.get(`/salesreport?start=${startDate}&endDate=${endDate}`)
+            const res = await useAxiosSecure.get(`/salesreport?start=2024-06-01T00:00:00.000Z&endDate=2024-06-03T00:59:59.999`)
             return res.data;
         }
     });
@@ -25,7 +26,7 @@ const SalesReport = () => {
         }
 
 
-    },[startDate,endDate])
+    },[startDate,endDate,refetch])
     return (
         <div>
             <SectionTitle title={"Sales Report"}></SectionTitle>

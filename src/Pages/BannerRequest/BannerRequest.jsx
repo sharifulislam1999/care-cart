@@ -135,7 +135,7 @@ const BannerRequest = () => {
                     </tbody>
                 </table>
                         <div className="my-4">
-                        <button className="btn bg-red-600 text-white">Rejected </button>
+                        {/* <button className="btn bg-red-600 text-white">Rejected </button> */}
                         </div>
                         <div>
                             <form className="" onSubmit={handleSubmit(uploadBg)}>
