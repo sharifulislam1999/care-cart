@@ -17,7 +17,7 @@ const SalesReport = () => {
         queryKey: ["sales"],
         queryFn: async ()=>{
             // const res = await useAxiosSecure.get(`/salesreport?start=${startDate}&endDate=${endDate}`)
-            const res = await useAxiosSecure.get(`/salesreport?start=2024-06-01T00:00:00.000Z&endDate=2024-06-03T00:59:59.999`)
+            const res = await useAxiosSecure.get(`/salesreport`)
             return res.data;
         }
     });

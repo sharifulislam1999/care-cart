@@ -58,7 +58,7 @@ const DiscountSlider = () => {
     seller: item.seller,
     user: user?.email,
     image:item.medicineImage,
-    price:item.medicinePrice,
+    price:item.medicinePrice - ((item.medicinePrice * item.medicineDiscount) / 100 ),
     quantity:1
    }
    
@@ -115,7 +115,7 @@ const DiscountSlider = () => {
             <div className="p-4 border flex flex-col duration-200 hover:scale-[101%] cursor-pointer rounded-md space-y-2">
               <div className="h-64 lg:h-56 relative">
                 <img
-                  className="h-full rounded-md w-full object-cover"
+                  className="rounded-md w-full h-full"
                   src={item.medicineImage}
                   alt=""
                 />
@@ -172,7 +172,7 @@ const DiscountSlider = () => {
                     : item.medicineDes}
                 </span>
               </div>
-              <div>
+              <div className="">
                 <div>
                   <button onClick={()=>handleCart(item)} className="w-full bg-[#008080] hover:bg-[#008080df] py-1 rounded-md text-white font-medium">
                     Add to Cart

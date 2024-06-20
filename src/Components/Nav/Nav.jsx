@@ -1,10 +1,6 @@
 import useAuth from "./../../Hooks/useAuth";
-import { IoLocationOutline } from "react-icons/io5";
-import { AiOutlineMail } from "react-icons/ai";
-import { MdOutlinePhone } from "react-icons/md";
 import logo from "../../assets/images/logo.png"
 import { Link, NavLink } from "react-router-dom";
-import { CiSearch } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import "./Nav.css";
 import { FaBars } from "react-icons/fa";
@@ -59,8 +55,8 @@ const Nav = () => {
             <div className={`absolute ${navToggle ? "top-12":"-top-96"} lg:static  z-40 rounded-xl bg-black w-[150px] lg:bg-transparent lg:w-auto`}>
                 <div>
                     <ul className="flex gap-2 p-5 lg:p-0 lg:gap-8 flex-col lg:flex-row text-[15px] font-medium">
-                        <li><NavLink className={({isActive})=> isActive ? "navactive":"navpending"} to="/">Home</NavLink></li>
-                        <li><NavLink className={({isActive})=> isActive ? "navactive":"navpending"} to="/shop">Shop</NavLink></li>
+                        <li><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "navactive":"navpending"} to="/">Home</NavLink></li>
+                        <li><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "navactive":"navpending"} to="/shop">Shop</NavLink></li>
                     </ul>
                 </div>
             </div>

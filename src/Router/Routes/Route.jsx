@@ -21,7 +21,6 @@ import Home from "../../Pages/Home/Home";
 import CategoryDetails from "../../Pages/CategoryDetails/CategoryDetails";
 import BannerRequest from "../../Pages/BannerRequest/BannerRequest";
 import Cart from './../../Pages/Cart/Cart';
-import Payment from "../../Pages/Payment/Payment";
 import AdminRoutes from "./AdminRoutes";
 import SellerRoutes from "./SellerRoutes";
 import ProfileUpdate from "../../Pages/ProfileUpdate/ProfileUpdate";

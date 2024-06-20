@@ -81,8 +81,9 @@ console.log(modalData)
         company:item.medicineCompany,
         seller:item.seller,
         user: user?.email,
-        image:item.medicineImage,
-        price:item.medicinePrice,
+        image:item.medicineImage,    
+        price:item.medicinePrice - ((item.medicinePrice * item.medicineDiscount) / 100 ),
+
         quantity:1
        }
        useAxiosSecure.post('/cart',cartItem)

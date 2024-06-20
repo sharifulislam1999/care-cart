@@ -53,7 +53,7 @@ const handleCart = (id,seller,name,company)=>{
   seller:seller,
   user: user?.email,
   image:medicineImage,
-  price:medicinePrice,
+  price:medicinePrice - ((medicinePrice * medicineDiscount) / 100 ),
   quantity:1
  }
  

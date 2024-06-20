@@ -15,6 +15,7 @@ const CheckoutForm = () => {
   const navigate = useNavigate();
   const axiosPublic = usePublic();
   const [clientSec,setClientSec] = useState('')
+  const [loading,setLoading] = useState(false)
   const [cart, refetch] = useCart();
   const total = cart.reduce((a, i) => parseInt(i.price * i.quantity) + a, 0);
 // const total = 45;
@@ -35,6 +36,7 @@ const CheckoutForm = () => {
     }
 };
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -76,10 +78,12 @@ const CheckoutForm = () => {
               date: new Date(),
               status:"pending"
             }))
+            console.log(payment)
             const res = await axiosPublic.post('/savepayment',payment)
             if(res.data.cart.deletedCount && res.data.payment.insertedCount){
               refetch();
               notify(1,'payment success')
+              setLoading(false)
               const makeInvoice = cart.map((item)=>{
                 return {
                   productName: item.name,
@@ -126,7 +130,8 @@ const CheckoutForm = () => {
         className="bg-[#008080] rounded-md mt-2 hover:bg-[#008080df] py-2 px-5 font-bold text-white"
         type="submit"
         disabled={!stripe || !clientSec}
-      >
+      > {loading && <span className="loading loading-spinner text-accent"></span>
+}
         Confirm Payment
       </button>
       <ToastContainer/>

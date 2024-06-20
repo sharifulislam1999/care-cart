@@ -165,7 +165,7 @@ const Loginform = () => {
             </div>
             <div className="flex-1">
                 <div className="lg:p-10 flex justify-center">
-                    <div className="h-12 w-48 rounded-full bg-[#0080803a] relative p-1">
+                    <div className="h-12 w-48 rounded-full bg-[#1bd7d73a] mb-5 relative p-1">
                         <div onClick={()=>setLoginToggle(!loginToggle)} className={`h-[68%]  cursor-pointer top-2 ${loginToggle ? "left-2" : "right-2"} absolute w-1/2 bg-[#008080] duration-300 rounded-full text-white flex justify-center items-center`}>
                             <h1>{!loginToggle ? "Sign In" : "Sign Up"}</h1>
                         </div>
