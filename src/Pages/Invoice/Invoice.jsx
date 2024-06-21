@@ -19,7 +19,10 @@ const Invoice = () => {
   console.log(totalPrice);
   return (
     <div className="container mx-auto px-3">
-      <div className="mt-20 border p-6">
+      <div className="mt-20 print:hidden">
+        <button onClick={()=>print()} className="btn bg-[#008080] text-white btn-sm">Print</button>
+      </div>
+      <div className="mt-2 border p-6">
         <div className="flex justify-between">
           <div>
             <img className="w-32" src={logo} alt="" />

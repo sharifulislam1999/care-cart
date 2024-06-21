@@ -26,7 +26,7 @@ const Dashboard = () => {
         dashboardLinks = 
         <div>
             <ul className="space-y-2 py-2">
-                <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "P":"pendingdash"}  to="/dashboard/sellerhome">Home</NavLink></li>
+                <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"}  to="/dashboard/sellerhome">Home</NavLink></li>
                 <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/productmanage">Manage Medicine</NavLink></li>
                 <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/sellerpayment">Payment History</NavLink></li>
                 <li className='px-3 py-1 block text-md font-normal text-white  '><NavLink onClick={()=>setNavToggle(!navToggle)} className={({isActive})=> isActive ? "activedash":"pendingdash"} to="/dashboard/sellerads">Advertisement Request.</NavLink></li>

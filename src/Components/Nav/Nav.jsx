@@ -29,7 +29,7 @@ const Nav = () => {
       }
  }
   return (
-    <div className="z-50">
+    <div className="z-50 print:hidden">
       <div className="container mx-auto px-3">
         <div className="flex justify-between items-center relative py-2 mt-1">
         <div className="lg:hidden text-2xl">
