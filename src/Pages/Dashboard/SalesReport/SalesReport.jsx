@@ -26,7 +26,6 @@ const SalesReport = () => {
             refetch()
         }
 
-
     },[startDate,endDate,refetch])
     return (
         <div>
@@ -45,12 +44,10 @@ const SalesReport = () => {
                     sheet="users"
                     currentTableRef={tableRef.current}
                 >
-
                    <button className='btn bg-[#008080] text-white btn-sm'> Export excel </button>
 
                 </DownloadTableExcel>
                 <div className='overflow-x-auto overflow-y-auto h-[80vh]'>
-
                 <table className='table' ref={tableRef} >
                     <thead>
                         <tr>
