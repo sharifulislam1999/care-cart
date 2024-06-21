@@ -67,10 +67,7 @@ const Dashboard = () => {
                     <Outlet></Outlet>    
                     </div>             
                 </div>
-            </div>
-            
-           
-            
+            </div>          
         </div>
     );
 };
