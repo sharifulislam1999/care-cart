@@ -229,7 +229,7 @@ console.log(modalData)
                         </div>
                     </div>
                 </div>
-            <div className="">
+            <div className="overflow-x-scroll">
             <table className="table table-xs w-full border">
             <thead>
                 <tr>

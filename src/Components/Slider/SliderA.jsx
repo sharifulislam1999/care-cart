@@ -96,7 +96,7 @@ const handleCart = (id,seller,name,company)=>{
             
             </div>
             <div>
-                <table className="border border-[#bdb9b9]  w-1/2">
+                <table className="border w-full border-[#bdb9b9]  lg:w-1/2">
                     <thead>
                         <tr >
                             <th className="font-medium text-white border-[#bdb9b9] border">Category</th>

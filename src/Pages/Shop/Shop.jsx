@@ -149,7 +149,7 @@ const Shop = () => {
                                 }
                                 </div>
                                 
-                                <div>
+                                <div className="">
                                 <table className="border w-full border-[#0E1A29]">
                     <thead>
                         <tr >
@@ -218,7 +218,8 @@ const Shop = () => {
                             </select>
                         </div>
                     </div>
-                <table className="table table-xs w-full border">
+                    <div className="overflow-x-scroll">
+                    <table className="table table-xs w-full border">
             <thead>
                 <tr>
                     <th className="border">Serial</th> 
@@ -247,7 +248,9 @@ const Shop = () => {
                         </div></td> 
                  </tr> )}            
                 </tbody>
-            </table>    
+            </table>  
+                    </div>
+               
             <div className="mt-10 flex justify-center gap-2">
                 <div className="pagination">
                     {pages.map((item,i)=>(
