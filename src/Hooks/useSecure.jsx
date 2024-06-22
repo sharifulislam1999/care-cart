@@ -2,7 +2,8 @@ import  axios  from 'axios';
 import useAuth from './useAuth';
 import { useNavigate } from 'react-router-dom';
 const useAxiosSecure = axios.create({
-    baseURL: 'https://carecartserver.vercel.app'
+    baseURL:'http://localhost:5000'
+    // baseURL: 'https://carecartserver.vercel.app'
 });
 const useSecure = ()=>{
     const {handleLogOut} = useAuth();

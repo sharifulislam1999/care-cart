@@ -56,7 +56,8 @@ const AuthProvder = ({children}) => {
         popSign,
         signIn,
         loading,
-        handleLogOut
+        handleLogOut,
+        setLoading
     }
     return (
         <MyContext.Provider value={authInfo}>

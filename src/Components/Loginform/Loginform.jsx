@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 const Loginform = () => {
     const [loginToggle,setLoginToggle] = useState(true);
     const {signUp,popSign,signIn} = useAuth();
+    const {setLoading} = useAuth()
     const axiosPublic = usePublic();
     const [submitLoading,setSubmitLogin] = useState(false)
     const [loginError,setLoginError] = useState({});
@@ -147,6 +148,7 @@ const Loginform = () => {
         })
         .catch(err=>{
             if(err.code === "auth/invalid-credential"){
+                setLoading(false)
                 notify(0,"Invalid email or password")
             }
         })

@@ -41,11 +41,11 @@ const Nav = () => {
                     <img className="w-[150px]" src={logo} alt="" /></Link>
                 </div>
             </div>
-            <div className="lg:flex-1 lg:hidden">
+            <div className="flex-1 lg:hidden">
 
             </div>
             
-            <div className="flex-1 lg:hidden flex justify-center ml-10 ">
+            <div className="flex-1 lg:hidden flex justify-center ">
                     <div>
                     <Link to='/'>
                     <img className="w-[120px]" src={logo} alt="" /></Link>
