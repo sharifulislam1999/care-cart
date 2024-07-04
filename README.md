@@ -2,12 +2,14 @@
 
 Welcome to CareCart Website! Please Visit my live site [here](https://b9a12-73e3e.web.app/).
 
-## Category
-assignment_category_0022
 
 ## Admin
 Admin Email: admin22@mail.com
 Admin Pass: Admin22
+
+## Seller
+Admin Email: seller11@mail.com
+Admin Pass: Seller11
 
 
 ## Features
