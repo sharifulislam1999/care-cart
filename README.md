@@ -8,8 +8,8 @@ Admin Email: admin22@mail.com
 Admin Pass: Admin22
 
 ## Seller
-Admin Email: seller11@mail.com
-Admin Pass: Seller11
+Seller Email: seller11@mail.com
+Seller Pass: Seller11
 
 
 ## Features
