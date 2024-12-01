@@ -15,6 +15,10 @@ Admin Pass: Admin22
 Seller Email: seller11@mail.com
 Seller Pass: Seller11
 
+## User
+User Email: user@mail.com
+User Pass: User111
+
 
 ## Features
 
